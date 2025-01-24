@@ -69,8 +69,7 @@ class DotfilesCalendarApplication(Adw.Application):
         about = Adw.AboutDialog(application_name='ML4W Calendar',
                                 application_icon='com.ml4w.calendar',
                                 developer_name='Stephan Raabe',
-                                version='0.1.0',
-                                copyright='© 2025 Stephan Raabe ML4W')
+                                version='0.1.0')
         # Translators: Replace "translator-credits" with your name/username, and optionally an email or URL.
         # about.set_translator_credits(_('translator-credits'))
         about.present(self.props.active_window)
