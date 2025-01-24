@@ -80,7 +80,12 @@ class DotfilesCalendarApplication(Adw.Application):
         settings = DotfilesCalendarSettings(application=self)
         settings.eventsbuttoncommand.set_show_apply_button(True)
         settings.eventsbuttoncommand.set_text(self.config["eventsbuttoncommand"])
+        settings.eventsbuttoncommand.connect("apply", self.on_eventsbuttoncommand)
         settings.present()
+
+    def on_eventsbuttoncommand(self, widget):
+        self.config["eventsbuttoncommand"] = widget.get_text()
+        self.write_config()
 
     def on_open_events(self, widget, _):
         if self.config["eventsbuttoncommand"] != "":
@@ -95,6 +100,11 @@ class DotfilesCalendarApplication(Adw.Application):
     def on_calendar_today(self, widget, _):
         self.calendar.set_month(datetime.now().month-1)
         self.calendar.set_day(datetime.now().day)
+
+    # Write config to json
+    def write_config(self, *args):
+        with open(self.config_folder + '/config.json', 'w', encoding='utf-8') as f:
+            json.dump(self.config, f, ensure_ascii=False, indent=4)
 
     # Create or load the application configuration
     def run_setup(self):
