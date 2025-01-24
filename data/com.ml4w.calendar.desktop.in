@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=ML4W Calendar
+Exec=dotfiles-calendar
+Icon=com.ml4w.calendar
+Terminal=false
+Type=Application
+Categories=Utility;
+Keywords=GTK;
+StartupNotify=true
+DBusActivatable=true

@@ -1,0 +1,3 @@
+[D-BUS Service]
+Name=com.ml4w.calendar
+Exec=@bindir@/dotfiles-calendar --gapplication-service

@@ -1,0 +1,8 @@
+{
+    "config": [
+	{
+            "key": "eventbuttoncommand",
+            "value": "betterbird"
+        }
+    ]
+}

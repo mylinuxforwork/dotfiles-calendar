@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="dotfiles-calendar">
+	<schema id="com.ml4w.calendar" path="/com/ml4w/calendar/">
+	</schema>
+</schemalist>
