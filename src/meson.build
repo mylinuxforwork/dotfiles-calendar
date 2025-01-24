@@ -30,8 +30,7 @@ dotfiles_calendar_sources = [
   '__init__.py',
   'main.py',
   'window.py',
-  'settings.py',
-  'config.json'
+  'settings.py'
 ]
 
 install_data(dotfiles_calendar_sources, install_dir: moduledir)

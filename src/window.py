@@ -7,6 +7,7 @@ class DotfilesCalendarWindow(Adw.ApplicationWindow):
     __gtype_name__ = 'DotfilesCalendarWindow'
 
     calendar = Gtk.Template.Child()
+    events_banner = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

@@ -8,7 +8,7 @@
     <property name="default-height">600</property>
     <property name="content">
       <object class="AdwToolbarView">
-        <child type="top">
+       <child type="top">
           <object class="AdwHeaderBar">
             <child type="start">
               <object class="GtkButton">
@@ -29,7 +29,15 @@
         <property name="content">
           <object class="GtkBox">
             <property name="orientation">1</property>
-            <child>
+              <child>
+                  <object class="AdwBanner" id="events_banner">
+                      <property name="button-label" translatable="true">Settings</property>
+                      <property name="title">No command defined for the Events button.</property>
+                      <property name="revealed">false</property>
+                      <property name="action-name">app.settings</property>
+                  </object>
+              </child>
+              <child>
               <object class="GtkCalendar" id="calendar">
                 <property name="hexpand">true</property>
                 <property name="vexpand">true</property>

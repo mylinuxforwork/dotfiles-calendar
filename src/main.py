@@ -33,11 +33,8 @@ from .window import DotfilesCalendarWindow
 from .settings import DotfilesCalendarSettings
 from datetime import datetime
 
+# The main application singleton class
 class DotfilesCalendarApplication(Adw.Application):
-    """The main application singleton class."""
-
-    # Widgets
-    calendar = Gtk.Template.Child()
 
     # Folders
     home_folder = os.path.expanduser('~')
@@ -45,9 +42,6 @@ class DotfilesCalendarApplication(Adw.Application):
 
     # Paths
     path_name = os.path.dirname(sys.argv[0])
-
-    # Default Apps
-    calendar_app = "betterbird"
 
     config = {}
 
@@ -69,8 +63,7 @@ class DotfilesCalendarApplication(Adw.Application):
         win.present()
 
         self.calendar = win.calendar
-
-        # self.calendar_app = self.loadDefaultApp("calendar.sh")
+        self.events_banner = win.events_banner
 
     def on_about_action(self, *args):
         about = Adw.AboutDialog(application_name='ML4W Calendar',
@@ -83,6 +76,7 @@ class DotfilesCalendarApplication(Adw.Application):
         about.present(self.props.active_window)
 
     def on_settings_action(self, *args):
+        self.events_banner.set_revealed(revealed=False)
         settings = DotfilesCalendarSettings(application=self)
         settings.eventsbuttoncommand.set_show_apply_button(True)
         settings.eventsbuttoncommand.set_text(self.config["eventsbuttoncommand"])
@@ -93,12 +87,16 @@ class DotfilesCalendarApplication(Adw.Application):
             subprocess.Popen(["flatpak-spawn", "--host", self.config["eventsbuttoncommand"]])
             self.quit()
         else:
-            print("EMPTY")
+            self.on_show_banner()
+
+    def on_show_banner(self, *args):
+        self.events_banner.set_revealed(revealed=True)
 
     def on_calendar_today(self, widget, _):
         self.calendar.set_month(datetime.now().month-1)
         self.calendar.set_day(datetime.now().day)
 
+    # Create or load the application configuration
     def run_setup(self):
         # Create com.ml4w.calendar in .config folder
         pathlib.Path(self.config_folder).mkdir(parents=True, exist_ok=True)
@@ -112,15 +110,8 @@ class DotfilesCalendarApplication(Adw.Application):
             config_file = open(self.config_folder + "/config.json")
             self.config = json.load(config_file)
 
+    # Add an application action
     def create_action(self, name, callback, shortcuts=None):
-        """Add an application action.
-
-        Args:
-            name: the name of the action
-            callback: the function to be called when the action is
-              activated
-            shortcuts: an optional list of accelerators
-        """
         action = Gio.SimpleAction.new(name, None)
         action.connect("activate", callback)
         self.add_action(action)
