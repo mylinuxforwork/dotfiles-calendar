@@ -66,10 +66,15 @@ class DotfilesCalendarApplication(Adw.Application):
         self.events_banner = win.events_banner
 
     def on_about_action(self, *args):
-        about = Adw.AboutDialog(application_name='ML4W Calendar',
-                                application_icon='com.ml4w.calendar',
-                                developer_name='Stephan Raabe',
-                                version='0.1.0')
+        about = Adw.AboutDialog(
+            application_name="ML4W Calendar App",
+            developer_name="Stephan Raabe",
+            version="0.1.0",
+            website="https://github.com/mylinuxforwork/dotfiles-calendar",
+            issue_url="https://github.com/mylinuxforwork/dotfiles-calendar/issues",
+            support_url="https://github.com/mylinuxforwork/dotfiles-calendar/issues",
+            copyright="© 2025 Stephan Raabe",
+        )
         # Translators: Replace "translator-credits" with your name/username, and optionally an email or URL.
         # about.set_translator_credits(_('translator-credits'))
         about.present(self.props.active_window)
