@@ -1,3 +1,4 @@
-# dotfiles-calendar
+# ML4W Calendar App
 
-A description of this project.
+![image](https://github.com/user-attachments/assets/350dc202-b6eb-4333-9308-b0dc2be543e7)
+
