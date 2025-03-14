@@ -3,8 +3,9 @@
   <requires lib="gtk" version="4.0"/>
   <requires lib="Adw" version="1.0"/>
   <template class="DotfilesCalendarSettings" parent="AdwPreferencesWindow">
-    <property name="default-width">800</property>
-    <property name="default-height">600</property>
+    <property name="default-width">400</property>
+    <property name="default-height">320</property>
+    <property name="resizable">false</property>
     <property name="title">Preferences</property>
 
     <child>
