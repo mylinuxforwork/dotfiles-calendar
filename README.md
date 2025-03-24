@@ -4,10 +4,17 @@
 
 This app can also be used without the ML4W Dofiles.
 
-Installation
+## Installation
 
+Copy the following command into your terminal.
 
+```
+curl -s https://raw.githubusercontent.com/mylinuxforwork/packages-installer/main/setup.sh | bash -s -- -p flatpak -s https://raw.githubusercontent.com/mylinuxforwork/dotfiles-calendar/master/com.ml4w.calendar.pkginst com.ml4w.calendar
+```
+> The installation is build with ML4W Packages Installer. https://github.com/mylinuxforwork/packages-installer
 
-Run the app
+## Uninstall
 
-flatpak run com.ml4w.calendar
+```
+flatpak uninstall com.ml4w.calendar
+```
