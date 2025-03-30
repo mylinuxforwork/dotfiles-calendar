@@ -70,7 +70,7 @@ class DotfilesCalendarApplication(Adw.Application):
         about = Adw.AboutDialog(
             application_name="ML4W Calendar App",
             developer_name="Stephan Raabe",
-            version="1.0",
+            version="1.1",
             website="https://github.com/mylinuxforwork/dotfiles-calendar",
             issue_url="https://github.com/mylinuxforwork/dotfiles-calendar/issues",
             support_url="https://github.com/mylinuxforwork/dotfiles-calendar/issues",
