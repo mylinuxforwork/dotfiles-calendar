@@ -82,10 +82,10 @@ class DotfilesCalendarApplication(Adw.Application):
 
     def on_settings_action(self, *args):
         self.events_banner.set_revealed(revealed=False)
-        settings = DotfilesCalendarSettings(application=self)
+        settings = DotfilesCalendarSettings()
         settings.eventsbuttoncommand.set_show_apply_button(True)
         settings.eventsbuttoncommand.connect("apply", self.on_eventsbuttoncommand)
-        settings.present()
+        settings.present(self.props.active_window)
 
     def on_eventsbuttoncommand(self, widget):
         self.settings.set_string("eventsbuttoncommand",widget.get_text())

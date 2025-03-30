@@ -6,7 +6,7 @@
     <property name="title" translatable="yes">Calendar</property>
     <property name="default-width">400</property>
     <property name="default-height">460</property>
-    <property name="resizable">false</property>
+    <property name="resizable">true</property>
     <property name="content">
       <object class="AdwToolbarView">
        <child type="top">
