@@ -54,6 +54,9 @@ class DotfilesCalendarApplication(Adw.Application):
         self.create_action('open_events', self.on_open_events)
         self.create_action('calendar_today', self.on_calendar_today)
 
+        self.settings = Gio.Settings(schema_id="com.ml4w.calendar")
+        print(self.settings.get_string("events-button-command"))
+
     def do_activate(self):
         self.run_setup()
 
