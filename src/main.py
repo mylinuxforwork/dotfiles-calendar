@@ -55,10 +55,8 @@ class DotfilesCalendarApplication(Adw.Application):
         self.create_action('calendar_today', self.on_calendar_today)
 
         self.settings = Gio.Settings(schema_id="com.ml4w.calendar")
-        print(self.settings.get_string("events-button-command"))
 
     def do_activate(self):
-        self.run_setup()
 
         win = self.props.active_window
         if not win:
@@ -86,20 +84,15 @@ class DotfilesCalendarApplication(Adw.Application):
         self.events_banner.set_revealed(revealed=False)
         settings = DotfilesCalendarSettings(application=self)
         settings.eventsbuttoncommand.set_show_apply_button(True)
-        settings.eventsbuttoncommand.set_text(self.config["eventsbuttoncommand"])
         settings.eventsbuttoncommand.connect("apply", self.on_eventsbuttoncommand)
         settings.present()
 
     def on_eventsbuttoncommand(self, widget):
-        self.config["eventsbuttoncommand"] = widget.get_text()
-        self.write_config()
+        self.settings.set_string("eventsbuttoncommand",widget.get_text())
 
     def on_open_events(self, widget, _):
-        if self.config["eventsbuttoncommand"] != "":
-            subprocess.Popen(["flatpak-spawn", "--host", self.config["eventsbuttoncommand"]])
-            self.quit()
-        else:
-            self.on_show_banner()
+        subprocess.Popen(["flatpak-spawn", "--host", self.settings.get_string("eventsbuttoncommand")])
+        self.quit()
 
     def on_show_banner(self, *args):
         self.events_banner.set_revealed(revealed=True)
@@ -107,25 +100,6 @@ class DotfilesCalendarApplication(Adw.Application):
     def on_calendar_today(self, widget, _):
         self.calendar.set_month(datetime.now().month-1)
         self.calendar.set_day(datetime.now().day)
-
-    # Write config to json
-    def write_config(self, *args):
-        with open(self.config_folder + '/config.json', 'w', encoding='utf-8') as f:
-            json.dump(self.config, f, ensure_ascii=False, indent=4)
-
-    # Create or load the application configuration
-    def run_setup(self):
-        # Create com.ml4w.calendar in .config folder
-        pathlib.Path(self.config_folder).mkdir(parents=True, exist_ok=True)
-
-        # Create empty config.json if not exists
-        if not os.path.exists(self.config_folder + '/config.json'):
-            self.config["eventsbuttoncommand"] = ""
-            with open(self.config_folder + '/config.json', 'w', encoding='utf-8') as f:
-                json.dump(self.config, f, ensure_ascii=False, indent=4)
-        else:
-            config_file = open(self.config_folder + "/config.json")
-            self.config = json.load(config_file)
 
     # Add an application action
     def create_action(self, name, callback, shortcuts=None):

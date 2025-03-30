@@ -11,3 +11,6 @@ class DotfilesCalendarSettings(Adw.PreferencesWindow):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
+        self.settings = Gio.Settings(schema_id="com.ml4w.calendar")
+        self.eventsbuttoncommand.set_text(self.settings.get_string("eventsbuttoncommand"))
+
