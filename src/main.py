@@ -68,7 +68,8 @@ class DotfilesCalendarApplication(Adw.Application):
 
     def on_about_action(self, *args):
         about = Adw.AboutDialog(
-            application_name="ML4W Calendar App",
+            application_name="Calendar App",
+            application_icon='com.ml4w.calendar',
             developer_name="Stephan Raabe",
             version="1.1",
             website="https://github.com/mylinuxforwork/dotfiles-calendar",

@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=ML4W Calendar App
+Name=Calendar App
 Exec=dotfiles-calendar
 Icon=com.ml4w.calendar
 Terminal=false

@@ -77,7 +77,7 @@
     </section>
     <section>
       <item>
-        <attribute name="label" translatable="yes">_About ML4W Calendar</attribute>
+        <attribute name="label" translatable="yes">_About Calendar App</attribute>
         <attribute name="action">app.about</attribute>
       </item>
     </section>
