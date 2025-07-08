@@ -6,6 +6,9 @@
 
   <name>ML4W Dotfiles Calendar App</name>
   <summary>Calendar app of the ML4W Dotfiles for Hyprland</summary>
+  <description>
+    <p>Calendar app of the ML4W Dotfiles for Hyprland</p>
+  </description>
   
   <developer id="tld.vendor">
     <name>Stephan Raabe (ML4W)</name>
