@@ -71,7 +71,7 @@ class DotfilesCalendarApplication(Adw.Application):
             application_name="Calendar App",
             application_icon='com.ml4w.calendar',
             developer_name="Stephan Raabe",
-            version="1.2",
+            version="1.3",
             website="https://github.com/mylinuxforwork/dotfiles-calendar",
             issue_url="https://github.com/mylinuxforwork/dotfiles-calendar/issues",
             support_url="https://github.com/mylinuxforwork/dotfiles-calendar/issues",
