@@ -30,7 +30,9 @@ dotfiles_calendar_sources = [
   '__init__.py',
   'main.py',
   'window.py',
-  'settings.py'
+  'settings.py',
+  'event_manager.py',
+  'event_dialog.py'
 ]
 
 install_data(dotfiles_calendar_sources, install_dir: moduledir)

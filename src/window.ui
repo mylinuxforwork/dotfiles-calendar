@@ -5,7 +5,7 @@
   <template class="DotfilesCalendarWindow" parent="AdwApplicationWindow">
     <property name="title" translatable="yes">Calendar</property>
     <property name="default-width">400</property>
-    <property name="default-height">460</property>
+    <property name="default-height">480</property>
     <property name="resizable">true</property>
     <property name="content">
       <object class="AdwToolbarView">
@@ -25,6 +25,16 @@
                 <property name="menu-model">primary_menu</property>
               </object>
             </child>
+            <child type="end">
+              <object class="GtkButton">
+                <property name="icon-name">list-add-symbolic</property>
+                <property name="tooltip-text" translatable="yes">Add Event (Ctrl+N)</property>
+                <property name="action-name">app.add_event</property>
+                <style>
+                  <class name="suggested-action"/>
+                </style>
+              </object>
+            </child>
           </object>
         </child>
         <property name="content">
@@ -33,7 +43,7 @@
               <child>
                   <object class="AdwBanner" id="events_banner">
                       <property name="button-label" translatable="true">Settings</property>
-                      <property name="title">No command defined for the Events button.</property>
+                      <property name="title">Double-click a date to add or view events</property>
                       <property name="revealed">false</property>
                       <property name="action-name">app.settings</property>
                   </object>
@@ -45,7 +55,10 @@
                 <property name="show-day-names">true</property>
                 <property name="show-week-numbers">true</property>
                 <property name="show-heading">true</property>
-                <property name="margin-bottom">18</property>
+                <property name="margin-top">12</property>
+                <property name="margin-bottom">6</property>
+                <property name="margin-start">12</property>
+                <property name="margin-end">12</property>
                 <property name="day">1</property>
               </object>
             </child>
@@ -53,14 +66,27 @@
               <object class="GtkBox">
                 <property name="orientation">0</property>
                 <property name="halign">center</property>
+                <property name="spacing">12</property>
+                <property name="margin-bottom">18</property>
                 <child>
                   <object class="GtkButton">
                     <property name="vexpand">false</property>
-                    <property name="margin-bottom">18</property>
-                    <property name="label" translatable="yes">Events</property>
-                    <property name="action-name">app.open_events</property>
+                    <property name="label" translatable="yes">View Day</property>
+                    <property name="action-name">app.view_events</property>
+                    <property name="tooltip-text" translatable="yes">View events for selected date</property>
                   </object>
-                  </child>
+                </child>
+                <child>
+                  <object class="GtkButton">
+                    <property name="vexpand">false</property>
+                    <property name="label" translatable="yes">All Events</property>
+                    <property name="action-name">app.all_events</property>
+                    <property name="tooltip-text" translatable="yes">View all events</property>
+                    <style>
+                      <class name="suggested-action"/>
+                    </style>
+                  </object>
+                </child>
               </object>
             </child>
           </object>
@@ -69,6 +95,20 @@
     </property>
   </template>
   <menu id="primary_menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Add Event</attribute>
+        <attribute name="action">app.add_event</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_View Day Events</attribute>
+        <attribute name="action">app.view_events</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">A_ll Events</attribute>
+        <attribute name="action">app.all_events</attribute>
+      </item>
+    </section>
     <section>
       <item>
         <attribute name="label" translatable="yes">_Settings</attribute>

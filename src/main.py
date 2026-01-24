@@ -53,6 +53,9 @@ class DotfilesCalendarApplication(Adw.Application):
         self.create_action('settings', self.on_settings_action)
         self.create_action('open_events', self.on_open_events)
         self.create_action('calendar_today', self.on_calendar_today)
+        self.create_action('view_events', self.on_view_events)
+        self.create_action('all_events', self.on_all_events)
+        self.create_action('add_event', self.on_add_event, ['<primary>n'])
 
         self.settings = Gio.Settings(schema_id="com.ml4w.calendar")
 
@@ -101,6 +104,24 @@ class DotfilesCalendarApplication(Adw.Application):
     def on_calendar_today(self, widget, _):
         self.calendar.set_month(datetime.now().month-1)
         self.calendar.set_day(datetime.now().day)
+
+    def on_view_events(self, widget, _):
+        """Show events for the selected date."""
+        win = self.props.active_window
+        if win:
+            win.show_events_for_selected_date()
+
+    def on_all_events(self, widget, _):
+        """Show all events."""
+        win = self.props.active_window
+        if win:
+            win.show_all_events()
+
+    def on_add_event(self, widget, _):
+        """Add a new event for the selected date."""
+        win = self.props.active_window
+        if win:
+            win.add_event_for_selected_date()
 
     # Add an application action
     def create_action(self, name, callback, shortcuts=None):
