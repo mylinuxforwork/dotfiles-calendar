@@ -173,7 +173,12 @@ class EventManager:
     def register_callback(self, callback):
         """Register a callback to be called when events change."""
         self._callbacks.append(callback)
-    
+
+    def unregister_callback(self, callback):
+        """Remove a callback from the list."""
+        if callback in self._callbacks:
+            self._callbacks.remove(callback)
+
     def _notify_callbacks(self):
         """Notify all registered callbacks."""
         for callback in self._callbacks:
@@ -183,11 +188,9 @@ class EventManager:
                 print(f"Error in callback: {e}")
     
     def _start_notification_checker(self):
-        """Start the periodic notification checker."""
-        # Check every 30 seconds
+        # check every 30s, and once now
         self._notification_timeout_id = GLib.timeout_add_seconds(30, self._check_notifications)
-        # Also check immediately
-        GLib.idle_add(self._check_notifications)
+        self._check_notifications()
     
     def _check_notifications(self) -> bool:
         """Check for events that need notifications."""

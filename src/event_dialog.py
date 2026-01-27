@@ -313,12 +313,13 @@ class EventListDialog(Adw.Dialog):
         self.set_title(f"Events - {date_display}")
         self.set_content_width(400)
         self.set_content_height(450)
-        
+
         self._build_ui()
         self._load_events()
-        
-        # Register for updates
+
+        # register for updates, unregister on close
         self.event_manager.register_callback(self._load_events)
+        self.connect("closed", lambda _: self.event_manager.unregister_callback(self._load_events))
     
     def _build_ui(self):
         """Build the dialog UI."""
@@ -441,12 +442,13 @@ class AllEventsDialog(Adw.Dialog):
         self.set_title("All Events")
         self.set_content_width(450)
         self.set_content_height(550)
-        
+
         self._build_ui()
         self._load_events()
-        
-        # Register for updates
+
+        # register for updates, unregister on close
         self.event_manager.register_callback(self._load_events)
+        self.connect("closed", lambda _: self.event_manager.unregister_callback(self._load_events))
     
     def _build_ui(self):
         """Build the dialog UI."""
